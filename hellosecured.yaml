@@ -33,5 +33,5 @@ spec:
         name: "nginx-proxy-conf"
         items:
           - key: "proxy.conf"
-            path: "nginx/proxy.conf"
+            path: "proxy.conf"
 
