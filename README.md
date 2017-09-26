@@ -83,7 +83,7 @@ and you get
 {“message":"Hello"}
 ```
 
-## How access your POD directly throud Cluster Load balancer
+## How access your POD directly through Cluster Load balancer
 Normally you don't want to do port-forwarding all the time to access POD. This is also not viable, since you have to take care of your 
 Node IP address and reconfigure port-forwarding every time you deploy POD new. It is much easier to access POD from outside if you let
 k8s cluster load balancer do the job for you. In order to benefit here, you have to expose your POD as a k8s service.
