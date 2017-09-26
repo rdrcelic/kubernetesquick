@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+    name: "hello"
+spec:
+    selector:
+        app: "hello"
+        secure: "enabled"
+    ports:
+      - protocol: "TCP"
+        port: 443
+        targetPort: 443
+        nodePort: 31000
+    type: NodePort

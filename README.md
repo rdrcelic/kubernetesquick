@@ -83,4 +83,34 @@ and you get
 {“message":"Hello"}
 ```
 
+## How access your POD directly throud Cluster Load balancer
+Normally you don't want to do port-forwarding all the time to access POD. This is also not viable, since you have to take care of your 
+Node IP address and reconfigure port-forwarding every time you deploy POD new. It is much easier to access POD from outside if you let
+k8s cluster load balancer do the job for you. In order to benefit here, you have to expose your POD as a k8s service.
+1. create hello_service.yml to create service and execute
+```
+$kubectl create -f hello_service.yml
+```
+2. all these calls are going to fail
+direct call to cluster IP
+```
+$curl -k https://10.0.0.63:31000
+```
+direct call to k8s cluster load balancer
+```
+curl -k https://192.168.99.100:31000
+```
+These calls fail because we have no label's set on our hello POD
+3. set same labels on POD that you used in spec.selector part of your hello_service.yml
+```
+$kubectl label pods hello "app=hello"
+$kubectl label pods hello "secure=enabled"
+$kubectl get pods -l "app=hello"
+$kubectl get pods -l "secure=enabled"
+```
+4. now you can call your hello service
+```
+$curl -k https://192.168.99.100:31000
+```
+
 
